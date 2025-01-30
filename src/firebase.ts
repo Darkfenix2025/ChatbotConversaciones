@@ -1,7 +1,7 @@
 // src/firebase-config.ts
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth'; // Importa getAuth
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'; // Importa GoogleAuthProvider y signInWithPopup
 
 // Verificar que las variables de entorno de Firebase estén presentes (opcional pero recomendado en producción)
 const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
@@ -32,4 +32,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app); // Inicializa Firebase Authentication
 
-export { db, auth }; // Exporta auth también
+// Inicializa el proveedor de Google
+const googleProvider = new GoogleAuthProvider();
+
+export { db, auth, googleProvider, signInWithPopup }; // Exporta googleProvider y signInWithPopup
